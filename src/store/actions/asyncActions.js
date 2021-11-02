@@ -10,18 +10,20 @@ export const login = (email, password) => {
         type: API_CALL_REQUEST,
         //en el payload mandamos la configuración de la petición axios que queremos hacer
         payload: { 
-            method: 'post',
-            url: 'https://reqres.in/api/login',
-            data: { //body del mensaje
-                email: email,
-                password: password
+            request: {
+                method: 'post',
+                url: 'https://reqres.in/api/login',
+                data: {
+                    email: email,
+                    password: password
+                }
             },
             //Acciones que ha de despachar el SAGA WATCHER según el resultado
             okAction: API_CALL_SUCCESS,
             failAction: API_CALL_FAILURE
         }
     } 
-}
+} 
 
 /**
  * Despachador de acción para petición http genérica 
@@ -31,9 +33,11 @@ export const httpRequest = (method, url, data) => {
         type: API_CALL_REQUEST,
         //en el payload mandamos la configuración de la petición axios que queremos hacer
         payload: { 
-            method: method,
-            url: url,
-            data: data,
+            request: {
+                method: method,
+                url: url,
+                data: data,
+            },
             //Acciones que ha de despachar el SAGA WATCHER según el resultado
             okAction: API_CALL_SUCCESS,
             failAction: API_CALL_FAILURE

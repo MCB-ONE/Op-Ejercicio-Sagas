@@ -1,7 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { axios } from 'axios';
+import axios from 'axios';
 import { API_CALL_REQUEST } from '../actions/asyncActions';
-
 
 
 
@@ -14,23 +13,24 @@ export function* watcherSaga(){
     yield takeLatest(API_CALL_REQUEST, workerSaga)
 }
 
+
 /**
  * Worker Saga
  * Es llamado desde el Worker Saga, hace el login y despacha una acción
  */
 export function* workerSaga(action){
-    try{
+    try {
         const response = yield call(fetchHttp(action.payload.request))
         // Cundo se tenga la respuesta obtenemos un token
         const token = response.data.token; 
-        yield put({//put espera una action
+        //put espera una action
+        yield put({
             type: action.payload.okAction, //Es igual API_CALL_SUCCESS
             payload: {
                 token: token
             }
         });
-    }
-    catch(error){
+    } catch(error){
         //en caso de error emitimos un fail action
         yield put({//put espera una action
             type: action.payload.failAction, //Es igual API_CALL_FAILURE

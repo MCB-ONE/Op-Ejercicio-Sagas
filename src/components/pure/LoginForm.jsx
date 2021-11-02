@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 
 
 /**Formik & Yup imports */
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const loginSchema = Yup.object().shape(
@@ -63,12 +63,13 @@ const Loginform = ({ loged, fetching, onLogin }) => {
                             Login
                         </Typography>
                         <Box
-                            component="form"
+                            component="div"
                             sx={{ 
                                 mt: 1,
                                 width: "100%"
                             }}
                         >
+                            <Form>
                             <TextField
                                 margin="normal"
                                 type="email"
@@ -109,6 +110,8 @@ const Loginform = ({ loged, fetching, onLogin }) => {
                                     <ErrorMessage name="password" component='div' style={{ color: "red" }}  ></ErrorMessage>
                                 )
                             }
+                            {fetching ? (<p>LOADING...</p>) : null}
+                            {isSubmitting ? (<p>Login your credentials...</p>) : null}
                             <Button
                                 type="submit"
                                 fullWidth
@@ -117,9 +120,10 @@ const Loginform = ({ loged, fetching, onLogin }) => {
                             >
                                 Sign In
                             </Button>
-                            {fetching ? (<p>LOADING...</p>) : null}
-                            {isSubmitting ? (<p>Login your credentials...</p>) : null}
+
+                            </Form> 
                         </Box>
+                        
                     </Box>
                 </Container>
             )}

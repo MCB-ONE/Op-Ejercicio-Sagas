@@ -11,11 +11,14 @@ export const createAsyncAppStore = () => {
 
     let store = createStore(
         rootReducer, 
-        compose( applyMiddleware(sagaMiddleware), composeWithDevTools() )
+        compose( 
+            applyMiddleware(sagaMiddleware),
+            composeWithDevTools() 
+        )
     );
 
     //Asegurarnos de inicializar el Watcher Saga
     sagaMiddleware.run(watcherSaga);
-
+    
     return store;
 } 
