@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import Loginform from '../pure/LoginForm'
 import { httpRequest } from '../../store/actions/asyncActions';
@@ -18,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
                 password: password
             }
             const url = 'https://reqres.in/api/login'
-            dispatch(httpRequest('post',url,data));
+            dispatch(httpRequest('post',url,data)); //Despachamos/ usamos la action genérica (es más útil que una especifica como login)
         }
     }
 }

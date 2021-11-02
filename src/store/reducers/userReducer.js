@@ -2,7 +2,7 @@ import { API_CALL_FAILURE, API_CALL_REQUEST, API_CALL_SUCCESS } from "../actions
 
 //Estado inicial de usuario
 const initialState = {
-    fetching: null,
+    fetching: false,
     token: null,
     error: null,
     logged: false
